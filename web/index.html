@@ -13,7 +13,7 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            font-family: "Segoe UI", sans-serif;
+            font-family: Arial, Tahoma, sans-serif;
         }
 
         /* Nút bấm */
@@ -135,6 +135,338 @@
                 opacity: 0;
             }
         }
+
+
+        /* Lớp phủ khi thiệp xuất hiện */
+        .card-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            background: rgba(74, 29, 45, 0.35);
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            animation: overlayIn 1.2s ease forwards;
+        }
+
+        /* Tấm thiệp */
+        .love-card {
+            position: relative;
+            width: min(420px, 100%);
+            max-height: 82vh;
+            overflow-y: auto;
+            box-sizing: border-box;
+            padding: 36px 26px;
+            border: 1px solid #e8c78e;
+            border-radius: 5px;
+            background: radial-gradient(ellipse at top, #fffdf7, transparent 75%), linear-gradient(145deg, #fffaf0, #f9e8dc);
+            box-shadow: 0 20px 70px rgba(65, 24, 37, 0.3);
+            color: #70434b;
+            text-align: center;
+            transform: translateY(35px) scale(0.88);
+            opacity: 0;
+            animation: cardReveal 1.4s cubic-bezier(.2,.8,.2,1) .2s forwards;
+        }
+
+            .love-card::before {
+                content: "";
+                position: absolute;
+                inset: 8px;
+                border: 1px solid rgba(190, 143, 87, 0.5);
+                pointer-events: none;
+            }
+
+        .card-flower {
+            font-size: 34px;
+            margin-bottom: 12px;
+            animation: flowerSway 3s ease-in-out infinite;
+        }
+
+        .card-title {
+            margin: 0 0 20px;
+            font-family: Arial, Tahoma, sans-serif;
+            font-size: 27px;
+            font-weight: normal;
+            color: #a64f61;
+        }
+
+        .card-message {
+            font-family: Arial, Tahoma, sans-serif;
+            font-size: 16px;
+            line-height: 1.9;
+            white-space: pre-line;
+            text-align: left;
+        }
+
+        .card-signature {
+            margin-top: 22px;
+            font-family: Arial, Tahoma, sans-serif;
+            font-size: 19px;
+            font-style: italic;
+            color: #a64f61;
+        }
+
+        .card-close {
+            position: relative;
+            z-index: 1;
+            margin-top: 22px;
+            padding: 10px 24px;
+            border: 1px solid #c58a91;
+            border-radius: 30px;
+            background: #a64f61;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+            .card-close:hover {
+                background: #85394b;
+            }
+
+        @keyframes overlayIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes cardReveal {
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes flowerSway {
+            0%, 100% {
+                transform: rotate(-5deg);
+            }
+
+            50% {
+                transform: rotate(5deg);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .love-card {
+                padding: 32px 22px;
+                max-height: 80vh;
+            }
+
+            .card-title {
+                font-size: 24px;
+            }
+
+            .card-message {
+                font-size: 15px;
+            }
+        }
+
+
+        /* Lớp phủ tương thích với màn hình điện thoại */
+        .card-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            box-sizing: border-box;
+            background: rgba(65, 31, 43, 0.48);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            opacity: 0;
+            animation: overlayIn 0.8s ease forwards;
+        }
+
+        /* Phong bì trước khi mở */
+        .envelope {
+            width: min(340px, 88vw);
+            aspect-ratio: 1.45;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #d9b77b;
+            border-radius: 5px;
+            background: linear-gradient(145deg, #fff8e9, #f1d8bd);
+            box-shadow: 0 18px 55px rgba(30, 10, 20, 0.3);
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            animation: envelopeFloat 3s ease-in-out infinite;
+        }
+
+            .envelope::before {
+                content: "";
+                position: absolute;
+                inset: 9px;
+                border: 1px solid #d9b77b;
+                pointer-events: none;
+            }
+
+        .envelope-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #884b55;
+            padding: 12px;
+        }
+
+        .envelope-flower {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .envelope-title {
+            font-family: Arial, Tahoma, sans-serif;
+            font-size: clamp(20px, 6vw, 26px);
+            font-weight: normal;
+            margin: 0 0 12px;
+        }
+
+        .envelope-hint {
+            font-size: 14px;
+            color: #966d68;
+        }
+
+        /* Nội dung thiệp sau khi mở */
+        .love-card {
+            position: relative;
+            width: 100%;
+            max-width: 430px;
+            max-height: 82vh;
+            max-height: 82dvh;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            -webkit-overflow-scrolling: touch;
+            box-sizing: border-box;
+            padding: 30px 24px;
+            border: 1px solid #d9b77b;
+            background: linear-gradient(145deg, #fffdf7, #f8e8db);
+            box-shadow: 0 20px 60px rgba(30, 10, 20, 0.28);
+            color: #70434b;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px) scale(0.94);
+            animation: cardReveal 0.9s ease forwards;
+        }
+
+            .love-card::before {
+                content: "";
+                position: absolute;
+                inset: 7px;
+                border: 1px solid rgba(190, 143, 87, 0.45);
+                pointer-events: none;
+            }
+
+        .card-flower {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .card-title {
+            font-family: Arial, Tahoma, sans-serif;
+            font-size: clamp(22px, 6vw, 27px);
+            font-weight: normal;
+            color: #a64f61;
+            margin: 0 0 20px;
+        }
+
+        .card-message {
+            font-family: Arial, Tahoma, sans-serif;
+            font-size: 16px;
+            line-height: 1.8;
+            white-space: pre-line;
+            overflow-wrap: anywhere;
+            text-align: left;
+        }
+
+        .card-signature {
+            font-family: Arial, Tahoma, sans-serif;
+            font-size: 17px;
+            line-height: 1.6;
+            margin-top: 20px;
+            color: #a64f61;
+        }
+
+        .card-close {
+            position: relative;
+            z-index: 2;
+            margin-top: 20px;
+            padding: 12px 20px;
+            min-height: 44px;
+            border: 0;
+            border-radius: 24px;
+            background: #a64f61;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        @keyframes overlayIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes envelopeFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(-1deg);
+            }
+
+            50% {
+                transform: translateY(-8px) rotate(1deg);
+            }
+        }
+
+        @keyframes cardReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .love-card {
+                padding: 25px 20px;
+                max-height: 78vh;
+                max-height: 78dvh;
+            }
+
+            .card-message {
+                font-size: 15px;
+                line-height: 1.75;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .envelope {
+                animation: none;
+            }
+        }
+
+
+        html, body {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+            html::-webkit-scrollbar,
+            body::-webkit-scrollbar,
+            .love-card::-webkit-scrollbar {
+                display: none;
+            }
+
+        .love-card {
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
     </style>
 </head>
 <body>
@@ -236,17 +568,105 @@
             setTimeout(() => msg.remove(), 12000);
         }
 
+
+
+        function showLoveCard() {
+            if (document.querySelector(".card-overlay")) return;
+
+            const overlay = document.createElement("div");
+            overlay.className = "card-overlay";
+
+            // Phong bì đóng: mẹ chạm vào để mở
+            const envelope = document.createElement("div");
+            envelope.className = "envelope";
+            envelope.setAttribute("role", "button");
+            envelope.setAttribute("tabindex", "0");
+            envelope.setAttribute("aria-label", "Chạm để mở thiệp tặng mẹ");
+
+            envelope.innerHTML = `
+        <div class="envelope-content">
+            <div class="envelope-flower">🌷</div>
+            <h2 class="envelope-title">Gửi mẹ yêu của con</h2>
+            <div class="envelope-hint">♡  mẹ bấm vào đi ạ ♡</div>
+        </div>
+    `;
+
+            function openCard() {
+                if (!overlay.contains(envelope)) return;
+
+                const card = document.createElement("div");
+                card.className = "love-card";
+
+                const flower = document.createElement("div");
+                flower.className = "card-flower";
+                flower.textContent = "🌷";
+
+                const title = document.createElement("h2");
+                title.className = "card-title";
+                title.textContent = "Gửi mẹ yêu của con ❤️";
+
+                const message = document.createElement("div");
+                message.className = "card-message";
+                message.textContent =
+                    "Nhân ngày 20/10, con chúc mẹ luôn mạnh khỏe, bình an, vui vẻ và lúc nào cũng nở nụ cười trên môi. Con mong những điều tốt đẹp nhất lúc nào cũng đến với mẹ của con, mong mẹ bớt lo toan, bớt vất vả và luôn luôn hạnh phúc ạ.\n\n" +
+                    "Con chỉ mong mình ngày càng trưởng thành để có thể san sẻ với mẹ nhiều hơn và khiến mẹ yên lòng. Mẹ nhớ giữ gìn sức khỏe ạ, mẹ đừng làm quá sức và hãy luôn vui vẻ nhé ạ!\n\n" +
+                    "Với con, mẹ luôn là người phụ nữ tuyệt vời nhất quả đất.";
+
+                const signature = document.createElement("div");
+                signature.className = "card-signature";
+                signature.textContent = "Chúc mừng ngày 20/10 — Con yêu mẹ nhiều lắm! ❤️";
+
+                const close = document.createElement("button");
+                close.className = "card-close";
+                close.textContent = "Mẹ đọc xong rồi ❤️";
+                close.addEventListener("click", () => {
+                    overlay.style.transition = "opacity 0.5s ease";
+                    overlay.style.opacity = "0";
+                    setTimeout(() => overlay.remove(), 500);
+                });
+
+                card.append(flower, title, message, signature, close);
+                envelope.replaceWith(card);
+            }
+
+            envelope.addEventListener("click", openCard);
+            envelope.addEventListener("keydown", event => {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    openCard();
+                }
+            });
+
+            overlay.appendChild(envelope);
+            document.body.appendChild(overlay);
+        }
+
+
+
+
         document.getElementById("playBtn").addEventListener("click", () => {
             const music = document.getElementById("bgMusic");
-            music.play().then(() => {
-                document.getElementById("playBtn").style.display = "none";
 
-                // Bắt đầu hiệu ứng
-                setInterval(createHeart, 600);
-                setInterval(createImage, 2500);
-                setInterval(createMessage, 4000);
-            }).catch(e => console.log("Không phát được nhạc:", e));
+            // Thử phát nhạc; hiệu ứng vẫn chạy nếu nhạc lỗi
+            music.play().catch(e => {
+                console.log("Không phát được nhạc:", e);
+            });
+
+            document.getElementById("playBtn").style.display = "none";
+
+            // Khởi chạy các hiệu ứng hiện tại
+            createHeart();
+            createImage();
+            createMessage();
+
+            setInterval(createHeart, 600);
+            setInterval(createImage, 2500);
+            setInterval(createMessage, 4000);
+
+            // Hiện thiệp sau 30 giây kể từ khi mẹ bấm nút
+            setTimeout(showLoveCard, 5000);
         });
+
     </script>
 
 </body>
