@@ -42,7 +42,7 @@
         .floating-img {
             position: absolute;
             width: 120px;
-            animation: floatUp 12s linear infinite;
+            animation: floatUp 24s linear infinite;
         }
 
         @keyframes floatUp {
@@ -298,7 +298,7 @@
             box-shadow: 0 18px 55px rgba(30, 10, 20, 0.3);
             cursor: pointer;
             -webkit-tap-highlight-color: transparent;
-            animation: envelopeFloat 3s ease-in-out infinite;
+            animation: none !important;
         }
 
             .envelope::before {
@@ -730,7 +730,7 @@
                 Math.random() * (window.innerWidth - size)
             ) + "px";
 
-            img.style.animationDuration = (Math.random() * 8 + 10) + "s";
+            img.style.animationDuration = (Math.random() * 10 + 24) + "s";
             document.body.appendChild(img);
 
             setTimeout(() => img.remove(), 15000);
@@ -749,7 +749,7 @@
 
             const maxLeft = Math.max(0, window.innerWidth - msg.offsetWidth);
             msg.style.left = Math.random() * maxLeft + "px";
-            msg.style.animationDuration = (Math.random() * 6 + 8) + "s";
+            msg.style.animationDuration = (Math.random() * 8 + 20) + "s";
 
             setTimeout(() => msg.remove(), 12000);
         }
