@@ -637,6 +637,33 @@
                 max-width: 44vw;
             }
         }
+        /* Phong bì không đung đưa */
+        .envelope {
+            animation: none !important;
+        }
+
+        /* Thiệp đã mở luôn đứng yên */
+        .love-card {
+            animation: none !important;
+            transform: none !important;
+            position: relative;
+        }
+
+        /* Lớp phủ giữ nguyên vị trí giữa màn hình */
+        .card-overlay {
+            position: fixed !important;
+            inset: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+        }
+
+        /* Không để hiệu ứng của phần tử cha làm thiệp trôi */
+        .love-card,
+        .love-card * {
+            animation-play-state: paused;
+        }
 
     </style>
 </head>
@@ -844,8 +871,8 @@
             createMessage();
 
             setInterval(createHeart, 600);
-            setInterval(createImage, 2500);
-            setInterval(createMessage, 4000);
+            setInterval(createImage, 5000);
+            setInterval(createMessage, 8000);
 
             // Hiện thiệp sau 30 giây kể từ khi mẹ bấm nút
             setTimeout(showLoveCard, 30000);
