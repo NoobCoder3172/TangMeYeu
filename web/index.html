@@ -1,174 +1,253 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>20/10 yêu thương</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(to top, #ffdde1, #ee9ca7);
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      font-family: "Segoe UI", sans-serif;
-    }
+    <meta charset="UTF-8">
+    <title>20/10 yêu thương</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(to top, #ffdde1, #ee9ca7);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            font-family: "Segoe UI", sans-serif;
+        }
 
-    /* Nút bấm */
-    #playBtn {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      padding: 20px 40px;
-      font-size: 22px;
-      background: #ff4d6d;
-      border: none;
-      border-radius: 12px;
-      color: white;
-      cursor: pointer;
-      z-index: 1000;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-    }
-    #playBtn:hover {
-      background: #ff3355;
-    }
+        /* Nút bấm */
+        #playBtn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px 40px;
+            font-size: 22px;
+            background: #ff4d6d;
+            border: none;
+            border-radius: 12px;
+            color: white;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
 
-    /* Hình ảnh bay */
-    .floating-img {
-      position: absolute;
-      width: 120px;
-      animation: floatUp 12s linear infinite;
-    }
-    @keyframes floatUp {
-      0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { transform: translateY(-120vh) scale(1); opacity: 0; }
-    }
+            #playBtn:hover {
+                background: #ff3355;
+            }
 
-    /* Trái tim */
-    .heart {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: red;
-      transform: rotate(-45deg);
-      animation: floatHeart 6s linear infinite;
-    }
-    .heart::before,
-    .heart::after {
-      content: "";
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: red;
-    }
-    .heart::before { top: -10px; left: 0; }
-    .heart::after { left: 10px; top: 0; }
-    @keyframes floatHeart {
-      0% { transform: translateY(0) rotate(-45deg) scale(0.5); opacity: 0; }
-      30% { opacity: 1; }
-      100% { transform: translateY(-200px) rotate(-45deg) scale(1); opacity: 0; }
-    }
+        /* Hình ảnh bay */
+        .floating-img {
+            position: absolute;
+            width: 120px;
+            animation: floatUp 12s linear infinite;
+        }
 
-    /* Câu chúc */
-    .message {
-      position: absolute;
-      font-size: 20px;
-      font-weight: bold;
-      color: #fff;
-      text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-      animation: floatMsg 10s linear forwards;
-    }
-    @keyframes floatMsg {
-      0% { transform: translateY(100vh); opacity: 0; }
-      20% { opacity: 1; }
-      100% { transform: translateY(-120vh); opacity: 0; }
-    }
-  </style>
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0.8);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-120vh) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Trái tim */
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            transform: rotate(-45deg);
+            animation: floatHeart 6s linear infinite;
+        }
+
+            .heart::before,
+            .heart::after {
+                content: "";
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background: red;
+            }
+
+            .heart::before {
+                top: -10px;
+                left: 0;
+            }
+
+            .heart::after {
+                left: 10px;
+                top: 0;
+            }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(0) rotate(-45deg) scale(0.5);
+                opacity: 0;
+            }
+
+            30% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-200px) rotate(-45deg) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Câu chúc */
+        .message {
+            position: absolute;
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+            animation: floatMsg 10s linear forwards;
+        }
+
+        @keyframes floatMsg {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-120vh);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Nhạc nền -->
-  <audio id="bgMusic" loop>
-    <source src="tangme.mp3" type="audio/mpeg">
-  </audio>
+    <!-- Nhạc nền -->
+    <audio id="bgMusic" loop>
+        <source src="tangme.mp3" type="audio/mpeg">
+    </audio>
 
-  <!-- Nút bấm -->
-  <button id="playBtn">🌕 Mẹ bấm vào đây đi mẹ 🌸</button>
+    <!-- Nút bấm -->
+    <button id="playBtn">🌕 Mẹ bấm vào đây đi mẹ 🌸</button>
 
-  <script>
-    const messages = [
-        "❤️ Chúc mẹ yêu luôn mạnh khỏe, bình an và hạnh phúc!",
-        "🌷 Mong mẹ mỗi ngày đều vui vẻ, nở nụ cười thật tươi!",
-        "✨ Chúc mẹ luôn gặp thật nhiều may mắn và những điều tốt đẹp!",
-        "💖 Mong mẹ bớt lo toan, bớt vất vả và luôn được yêu thương!",
-        "🥰 Chúc mẹ mãi là người phụ nữ tuyệt vời nhất trong lòng con!"
-    ];
+    <script>
+        const messages = [
+            "❤️ Chúc mẹ yêu luôn mạnh khỏe, bình an và hạnh phúc!",
+            "🌷 Mong mẹ mỗi ngày đều vui vẻ, nở nụ cười thật tươi!",
+            "✨ Chúc mẹ luôn gặp thật nhiều may mắn và những điều tốt đẹp!",
+            "💖 Mong mẹ bớt lo toan, bớt vất vả và luôn được yêu thương!",
+            "🥰 Chúc mẹ mãi là người phụ nữ tuyệt vời nhất trong lòng con!",
+            "🌸 Chúc mẹ lúc nào cũng rạng rỡ, trẻ trung và tràn đầy sức sống!",
+            "🫶 Mong mọi điều dịu dàng và tốt đẹp nhất sẽ luôn đến với mẹ!",
+            "☀️ Chúc mỗi ngày của mẹ đều ngập tràn niềm vui và tiếng cười!",
+            "🍀 Mong mẹ luôn bình an, gặp nhiều may mắn và vạn sự như ý!",
+            "💐 Chúc mẹ có thật nhiều sức khỏe để sống vui vẻ bên gia đình!",
+            "💕 Cảm ơn mẹ vì đã luôn yêu thương, chăm sóc và lo lắng cho con!",
+            "🤗 Mong mẹ luôn được yêu thương, quan tâm và chăm sóc thật nhiều!",
+            "🌈 Chúc những muộn phiền của mẹ vơi đi, nhường chỗ cho những niềm vui!",
+            "🕊️ Mong mẹ luôn an yên trong lòng, nhẹ nhàng trong cuộc sống!",
+            "🌹 Chúc mẹ luôn xinh đẹp, hạnh phúc và được cuộc đời đối xử thật dịu dàng!",
+            "💗 Con mong mình ngày càng trưởng thành để mẹ có thể yên tâm và tự hào!",
+            "🧸 Mẹ nhớ ăn uống đầy đủ, nghỉ ngơi nhiều hơn và đừng làm việc quá sức nhé!",
+            "🌻 Chúc mẹ luôn có thật nhiều lý do để mỉm cười mỗi ngày!",
+            "🎀 Mong những điều mẹ mong ước đều dần trở thành hiện thực!",
+            "🏡 Chúc gia đình mình luôn ấm áp, bình an và ngập tràn tiếng cười!",
+            "💝 Dù lớn đến đâu, con vẫn luôn muốn được mẹ yêu thương và chở che!",
+            "🌙 Mong mẹ ngủ ngon mỗi tối, thức dậy mỗi sáng với một tâm trạng thật vui!",
+            "🩷 Mẹ hãy yêu thương bản thân mình nhiều như cách mẹ luôn yêu thương mọi người nhé!",
+            "🌺 Chúc mẹ luôn khỏe mạnh để cùng con đón thêm thật nhiều mùa 20/10 nữa!",
+            "🥹 Có thể con chưa nói ra thường xuyên, nhưng con thương mẹ nhiều hơn mẹ nghĩ!",
+            "💞 Với con, được nhìn thấy mẹ vui vẻ và khỏe mạnh đã là một món quà quý giá!",
+            "✨ Chúc người mẹ tuyệt vời nhất của con một ngày 20/10 thật trọn vẹn!",
+            "❤️ Con yêu mẹ nhiều lắm, hôm nay và cả những ngày bình thường sau này nữa!"
+        ];
 
-    const images = [
-      "anh1.jpg",
-      "anh2.jpg",
-      "https://cdn-icons-png.flaticon.com/512/4151/4151033.png",
-      "https://cdn-icons-png.flaticon.com/512/4151/4151045.png"
-    ];
+        const images = [
+            "me1.jpg",
+            "me2.jpg",
+            "me3.jpg",
+            "me4.jpg",
+            "me5.jpg",
+            "me6.jpg",
+            "me7.jpg",
+            "me8.jpg",
+            "me9.jpg",
+            "me10.jpg",
+            "me11.jpg",
+            "me12.jpg",
+            "me13.jpg",
+            "me14.jpg"
+        ];
 
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      document.body.appendChild(heart);
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            document.body.appendChild(heart);
 
-      heart.style.left = Math.random() * window.innerWidth + "px";
-      const size = Math.random() * 15 + 10;
-      heart.style.width = size + "px";
-      heart.style.height = size + "px";
-      heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            const size = Math.random() * 15 + 10;
+            heart.style.width = size + "px";
+            heart.style.height = size + "px";
+            heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
 
-      setTimeout(() => heart.remove(), 7000);
-    }
+            setTimeout(() => heart.remove(), 7000);
+        }
 
-    function createImage() {
-      const img = document.createElement("img");
-      img.src = images[Math.floor(Math.random() * images.length)];
-      img.className = "floating-img";
-      document.body.appendChild(img);
+        function createImage() {
+            const img = document.createElement("img");
+            img.src = images[Math.floor(Math.random() * images.length)];
+            img.className = "floating-img";
+            document.body.appendChild(img);
 
-      img.style.left = Math.random() * (window.innerWidth - 100) + "px";
-      img.style.animationDuration = (Math.random() * 8 + 10) + "s";
-      const size = Math.random() * 50 + 80;
-      img.style.width = size + "px";
+            img.style.left = Math.random() * (window.innerWidth - 100) + "px";
+            img.style.animationDuration = (Math.random() * 8 + 10) + "s";
+            const size = Math.random() * 50 + 80;
+            img.style.width = size + "px";
 
-      setTimeout(() => img.remove(), 15000);
-    }
+            setTimeout(() => img.remove(), 15000);
+        }
 
-    function createMessage() {
-      const msg = document.createElement("div");
-      msg.className = "message";
-      msg.textContent = messages[Math.floor(Math.random() * messages.length)];
-      document.body.appendChild(msg);
+        function createMessage() {
+            const msg = document.createElement("div");
+            msg.className = "message";
+            msg.textContent = messages[Math.floor(Math.random() * messages.length)];
+            document.body.appendChild(msg);
 
-      msg.style.left = Math.random() * (window.innerWidth - 300) + "px";
-      msg.style.animationDuration = (Math.random() * 6 + 8) + "s";
+            msg.style.left = Math.random() * (window.innerWidth - 300) + "px";
+            msg.style.animationDuration = (Math.random() * 6 + 8) + "s";
 
-      setTimeout(() => msg.remove(), 12000);
-    }
+            setTimeout(() => msg.remove(), 12000);
+        }
 
-    document.getElementById("playBtn").addEventListener("click", () => {
-      const music = document.getElementById("bgMusic");
-      music.play().then(() => {
-        document.getElementById("playBtn").style.display = "none";
+        document.getElementById("playBtn").addEventListener("click", () => {
+            const music = document.getElementById("bgMusic");
+            music.play().then(() => {
+                document.getElementById("playBtn").style.display = "none";
 
-        // Bắt đầu hiệu ứng
-        setInterval(createHeart, 600);
-        setInterval(createImage, 2500);
-        setInterval(createMessage, 4000);
-      }).catch(e => console.log("Không phát được nhạc:", e));
-    });
-  </script>
+                // Bắt đầu hiệu ứng
+                setInterval(createHeart, 600);
+                setInterval(createImage, 2500);
+                setInterval(createMessage, 4000);
+            }).catch(e => console.log("Không phát được nhạc:", e));
+        });
+    </script>
 
 </body>
 </html>
