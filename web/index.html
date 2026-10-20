@@ -2,6 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>20/10 yêu thương</title>
     <style>
         body {
@@ -467,6 +468,176 @@
             -ms-overflow-style: none;
         }
 
+
+        /* ===== TỐI ƯU THIỆP CHO ĐIỆN THOẠI ===== */
+
+        html {
+            width: 100%;
+            height: 100%;
+            scrollbar-width: none;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+            font-family: Arial, Tahoma, sans-serif;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* Nút bắt đầu */
+        #playBtn {
+            width: min(88vw, 420px);
+            min-height: 68px;
+            padding: 18px 22px;
+            font-size: clamp(20px, 5.5vw, 25px);
+            line-height: 1.5;
+            box-sizing: border-box;
+        }
+
+        /* Ảnh bay: tăng kích thước mặc định */
+        .floating-img {
+            width: 160px;
+            max-width: 42vw;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* Lời chúc bay: chữ lớn, dễ đọc */
+        .message {
+            width: max-content;
+            max-width: 88vw;
+            box-sizing: border-box;
+            padding: 8px 12px;
+            font-size: clamp(19px, 5vw, 25px);
+            line-height: 1.6;
+            text-align: center;
+            overflow-wrap: anywhere;
+        }
+
+        /* Lớp phủ thiệp */
+        .card-overlay {
+            padding: 12px;
+            padding-top: max(12px, env(safe-area-inset-top));
+            padding-bottom: max(12px, env(safe-area-inset-bottom));
+            overflow: hidden;
+        }
+
+        /* Phong bì trước khi mở */
+        .envelope {
+            width: min(460px, 92vw);
+        }
+
+        .envelope-content {
+            padding: 16px;
+        }
+
+        .envelope-flower {
+            font-size: 52px;
+        }
+
+        .envelope-title {
+            font-family: Arial, Tahoma, sans-serif;
+            font-size: clamp(27px, 7vw, 36px);
+            line-height: 1.4;
+        }
+
+        .envelope-hint {
+            font-size: 20px;
+            line-height: 1.6;
+        }
+
+        /* Thiệp sau khi mở */
+        .love-card {
+            width: 100%;
+            max-width: 600px;
+            max-height: 88vh;
+            max-height: 88dvh;
+            padding: 34px 28px;
+            box-sizing: border-box;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+            .love-card::-webkit-scrollbar {
+                display: none;
+            }
+
+        /* Hoa trang trí */
+        .card-flower {
+            font-size: 44px;
+            margin-bottom: 16px;
+        }
+
+        /* Tiêu đề */
+        .card-title {
+            font-family: Arial, Tahoma, sans-serif;
+            font-size: clamp(29px, 6vw, 36px);
+            line-height: 1.5;
+            font-weight: bold;
+            margin-bottom: 24px;
+        }
+
+        /* Nội dung lời chúc */
+        .card-message {
+            font-family: Arial, Tahoma, sans-serif;
+            font-size: clamp(21px, 4.8vw, 25px);
+            line-height: 1.9;
+            text-align: left;
+            white-space: pre-line;
+            overflow-wrap: anywhere;
+        }
+
+        /* Chữ ký cuối thiệp */
+        .card-signature {
+            font-family: Arial, Tahoma, sans-serif;
+            font-size: clamp(22px, 5vw, 27px);
+            line-height: 1.8;
+            font-weight: bold;
+            margin-top: 26px;
+        }
+
+        /* Nút đóng thiệp */
+        .card-close {
+            width: 100%;
+            min-height: 58px;
+            padding: 15px 18px;
+            font-size: 20px;
+            line-height: 1.5;
+            margin-top: 24px;
+        }
+
+        /* Điện thoại nhỏ */
+        @media (max-width: 480px) {
+            .love-card {
+                padding: 28px 20px;
+                max-height: 88dvh;
+            }
+
+            .card-title {
+                font-size: 29px;
+                line-height: 1.5;
+            }
+
+            .card-message {
+                font-size: 22px;
+                line-height: 1.9;
+            }
+
+            .card-signature {
+                font-size: 23px;
+                line-height: 1.8;
+            }
+
+            .floating-img {
+                max-width: 44vw;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -542,31 +713,47 @@
             setTimeout(() => heart.remove(), 7000);
         }
 
+
         function createImage() {
             const img = document.createElement("img");
             img.src = images[Math.floor(Math.random() * images.length)];
             img.className = "floating-img";
-            document.body.appendChild(img);
 
-            img.style.left = Math.random() * (window.innerWidth - 100) + "px";
-            img.style.animationDuration = (Math.random() * 8 + 10) + "s";
-            const size = Math.random() * 50 + 80;
+            // Ảnh lớn hơn, tự điều chỉnh theo màn hình
+            const maxSize = Math.min(180, window.innerWidth * 0.44);
+            const minSize = Math.min(110, maxSize);
+            const size = minSize + Math.random() * (maxSize - minSize);
+
             img.style.width = size + "px";
+            img.style.left = Math.max(
+                0,
+                Math.random() * (window.innerWidth - size)
+            ) + "px";
+
+            img.style.animationDuration = (Math.random() * 8 + 10) + "s";
+            document.body.appendChild(img);
 
             setTimeout(() => img.remove(), 15000);
         }
 
+
+
         function createMessage() {
             const msg = document.createElement("div");
             msg.className = "message";
-            msg.textContent = messages[Math.floor(Math.random() * messages.length)];
+            msg.textContent = messages[
+                Math.floor(Math.random() * messages.length)
+            ];
+
             document.body.appendChild(msg);
 
-            msg.style.left = Math.random() * (window.innerWidth - 300) + "px";
+            const maxLeft = Math.max(0, window.innerWidth - msg.offsetWidth);
+            msg.style.left = Math.random() * maxLeft + "px";
             msg.style.animationDuration = (Math.random() * 6 + 8) + "s";
 
             setTimeout(() => msg.remove(), 12000);
         }
+
 
 
 
@@ -664,7 +851,7 @@
             setInterval(createMessage, 4000);
 
             // Hiện thiệp sau 30 giây kể từ khi mẹ bấm nút
-            setTimeout(showLoveCard, 5000);
+            setTimeout(showLoveCard, 30000);
         });
 
     </script>
